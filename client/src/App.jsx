@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css"
+import { useState } from "react"
+import Home from "./components/Home"
+import Profile from "./components/Profile"
+import Matches from "./components/Matches"
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-      <h1>Gamestack</h1>
-      </div>
-      <div className="Profile">
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
+      
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="*" element={<Page404 />}></Route>
+        <Route path="/matches" elements={<Matches />}></Route>
+      </Routes>
     </>
   )
 }

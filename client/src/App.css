@@ -33,10 +33,15 @@
   }
 }
 
-.card {
-  padding: 2em;
+/* HOME */
+h1 {
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+.tagline {
+  font-size: 12pt;
 }
+
+/* PROFILE */
+
+/* POTENTIAL TEAMMATES */
