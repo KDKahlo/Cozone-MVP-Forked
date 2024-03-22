@@ -47,25 +47,25 @@ router.get("/region/:serverRegion", async function(req, res, next) {
 });
 
 /* POST a new user */
-router.post("/form", async function(req, res, next) {
-  const { user } = req.body
-  if (!user) {
-    res.status(400).send({
-      message: "Please complete the form",
-  });
-  return;
-  }
+// router.post("/form", async function(req, res, next) {
+//   const { user } = req.body
+//   if (!user) {
+//     res.status(400).send({
+//       message: "Please complete the form",
+//   });
+//   return;
+//   }
 
-  try {
-    await db (
-      `INSERT INTO students (username, birthdate, email, password, serverRegion, currentRank) 
-      VALUES ('${username}', '${birthdate}', '${email}', '${password}', '${serverRegion}', '${currentRank});`
-    );
-    const result = await db("SELECT * FROM profile;");
-    res.send(result.data);
-  } catch (err) {
-    res.status(500).send(err)
-  }
-});
+//   try {
+//     await db (
+//       `INSERT INTO students (username, birthdate, email, password, serverRegion, currentRank) 
+//       VALUES ('${username}', '${birthdate}', '${email}', '${password}', '${serverRegion}', '${currentRank});`
+//     );
+//     const result = await db("SELECT * FROM profile;");
+//     res.send(result.data);
+//   } catch (err) {
+//     res.status(500).send(err)
+//   }
+// });
 
 module.exports = router;
