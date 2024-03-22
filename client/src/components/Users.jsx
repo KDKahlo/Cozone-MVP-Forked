@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useState } from 'react';
 import { Link, Outlet } from 'react';
 
 function Users() {
@@ -8,7 +7,7 @@ function Users() {
 
     const getUsers = async () => {
       try {
-          const response = await fetch("/api/users");
+          const response = await fetch("/api/user");
           const users = await response.json();
           setUsers(users);
         } catch (error) {
@@ -18,9 +17,21 @@ function Users() {
       
       return (
         <>
-        <div>
-            <h2>Find your team</h2>
+          <h2>Find your team</h2>
+          <div>
+          <hr />
+      {users.map((users) => (
+        <div key={users.id}>
+          <ul>
+          <li><Link to={`/users/${users.userid}`}>
+            {users.username}, {users.serverRegion}
+          </Link></li>
+          </ul>
         </div>
+      ))}
+      <hr />
+      <Outlet />
+    </div>
         </>
     )
 }

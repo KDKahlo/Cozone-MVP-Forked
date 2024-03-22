@@ -34,19 +34,15 @@
 }
 
 /* HOME */
-body {
-  background-color: black;
-  background: linear-gradient(35deg, rgb(26, 26, 26) 20%, rgb(44, 90, 101) 30%, rgb(73, 137, 149) 50%);
-}
 
 h1 {
   color: black;
 }
 
-.tagline {
-  font-size: 12pt;
-}
+/* FORM */
 
 /* PROFILE */
 
 /* POTENTIAL TEAMMATES */
+
+/* MODAL */

@@ -1,25 +1,25 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { Link, Outlet } from 'react';
 
 export default function User() {
-    const [user, setUser] = useState(null);
-    const { id, serverRegion } = useParams();
+    const [user, setUser] = useState([])
+    const { serverRegion } = useParams();
   
     const getUserByRegion = async () => {
       try {
-        const response = await fetch(`/api/user/${serverRegion}`);
+        const response = await fetch(`/api/region/${serverRegion}`);
         const user = await response.json();
         setUser(user);
       } catch (error) {
         console.error(error.message);
       }
-    };
+    }
   
     useEffect(() => {
       getUserByRegion();
-    }, [id]);
+    }, [ serverRegion ]);
+
     return (
       <div>
         {user && (
