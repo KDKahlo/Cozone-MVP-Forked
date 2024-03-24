@@ -6,7 +6,7 @@ const db = require("../model/helper");
 router.get('/', async function(req, res, next) {
 
   try {
-    const result = await db (`SELECT * FROM profile;`)
+    const result = await db (`SELECT * FROM allUsers;`)
     const users = result.data;
     res.send(users);
   } catch (err) {
@@ -23,7 +23,7 @@ router.get('/', async function(req, res, next) {
 router.get("/:userid", async function(req, res, next) {
   const { userid } = req.params;
   try {
-    const result = await db(`SELECT * FROM profile WHERE userid = ${ userid };`);
+    const result = await db(`SELECT * FROM allUsers WHERE userid = ${ userid };`);
     console.log(result);
     res.send(result);
     }
@@ -37,7 +37,7 @@ router.get("/:userid", async function(req, res, next) {
 router.get("/region/:serverRegion", async function(req, res, next) {
   const { serverRegion } = req.params;
   try {
-    const result = await db(`SELECT * FROM profile WHERE serverRegion = '${ serverRegion }';`);
+    const result = await db(`SELECT * FROM allUsers WHERE serverRegion = '${ serverRegion }';`);
     if (!serverRegion) {
       res.status(404).send({message: "User not found", error: true});
     } res.send(result);
