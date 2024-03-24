@@ -9,8 +9,6 @@ import { useEffect, useState } from "react";
 function App() {
   const [allPlayers, setAllPlayers] = useState(``);
   const [playerList, setPlayerList] = useState([]);
-  const [serverRegion, setServerRegion] = useState(``);
-  const [playerByRegion, setPlayerByRegion] = useState([]);
 
   useEffect(() => {
     getPlayers();
@@ -27,40 +25,6 @@ function App() {
   }
   }
 
-  async function getRegion() {
-
-    try {
-      const response = await fetch(`http://localhost:4000/users/region/${serverRegion}`); // /api/users/region/Europe not working
-      const result = await response.json();
-      setPlayerByRegion(result.data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    } return (
-      playerByRegion.filter()
-    )
-  }
-
-  useEffect(() => {
-    getRegion();
-  }, []);
-
-  const filteredPlayers = playerList.filter((playerList) =>
-    playerList.toLowerCase().includes(serverRegion.toLowerCase())
-    );
-
-    setPlayerByRegion(playerByRegion);
-  }
-
-  const handleInputChange = (event) => {
-    const { serverRegion } = event.target.value;
-    setServerRegion((prevState) => ({ ...prevState, [serverRegion]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getRegion();
-  }
-
   return (
     <>
       <div>
@@ -75,15 +39,6 @@ function App() {
       </div>
         <h1>cozone.gg</h1>
         <h3>connect and conquer</h3>
-      <hr />
-      <div className="form"><form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label for="search" class="form-label">Search by region</label>
-          <input type="text" id="search" value={serverRegion.value} onChange={handleInputChange}/>
-      </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div>
       <hr />
       <div className="container text-center">
         <div className="row row-cols-4">
