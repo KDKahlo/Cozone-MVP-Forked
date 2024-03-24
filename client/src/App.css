@@ -11,12 +11,6 @@
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
 @keyframes logo-spin {
   from {
@@ -35,13 +29,46 @@
 
 /* HOME */
 
-h1 {
-  color: black;
+body {
+  background-color: rgb(20, 18, 18);
 }
 
-/* FORM */
+h1 {
+  color: rgb(41, 121, 137);
+  font-size: 20px;
+}
+
+h3 {
+  color: rgb(154, 154, 154)
+}
+
+.nav {
+  list-style: none;
+}
+
+.members {
+  list-style: none;
+  margin-left: 0px;
+  color: antiquewhite;
+}
+
+a:hover {
+  color:  rgb(41, 121, 137);
+}
+
+a:visited {
+  color:  rgb(41, 121, 137);
+}
+
+.membertag {
+  color: white;
+}
 
 /* PROFILE */
+
+.player-avatar {
+  width: 100px;
+}
 
 /* POTENTIAL TEAMMATES */
 
