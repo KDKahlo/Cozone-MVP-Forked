@@ -14,7 +14,7 @@ CREATE TABLE allUsers (
     username VARCHAR(40) not null, 
     birthdate DATE,
     email VARCHAR(255),
-    password VARCHAR(30),
+    password VARCHAR(255),
     serverRegion TEXT,
     currentRank TEXT,
     avatarURL VARCHAR(255),
@@ -24,7 +24,7 @@ CREATE TABLE allUsers (
 --
 -- Insert data
 --
-INSERT INTO profile(username, birthdate, email, password, serverRegion, currentRank, avatarUrl) VALUES 
+INSERT INTO allUsers (username, birthdate, email, password, serverRegion, currentRank, avatarUrl) VALUES 
     ('cydonian', '1993-09-16', 'eras3rase@gmail.com', 'Radiant17', 'Europe', 'Immortal', 'https://64.media.tumblr.com/add609c63657e848b038031c6c95003e/9fb3e801f69478a3-46/s500x750/64f8c89bdb82d13164589454cc9947f61c4fa818.pnj')
     ('winter', '2001-01-01', 'kminjeong@gmail.com', 'w1ntermemories11', 'Korea', 'Gold', 'https://64.media.tumblr.com/238f872a870878fc544f1ab3d310d655/da6bff35ba9041f6-19/s500x750/1e8ccc468947f88244cc678bcd4f96fedfcf17ab.jpg'), 
     ('kuromi', '2000-04-11', 'katarinayoo@gmail.com', 'angelbaby411', 'NA', 'Silver', 'https://64.media.tumblr.com/60b4f77c6312f0d321f7f453f04623d0/103a7be3e9cec002-88/s1280x1920/7396b087743f76234f41108cae67114a39d9685b.jpg'), 
