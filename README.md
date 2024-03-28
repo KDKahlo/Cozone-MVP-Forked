@@ -2,7 +2,7 @@
 
 ## Description
 
-This is the CoZone.gg project made in JavaScript and React framework with the database created in MySQL. Because of its simple-to-grasp functionality while 
+This is the CoZone.gg project made in JavaScript and React framework with the database created in MySQL.
 
 ### Motivation
 
