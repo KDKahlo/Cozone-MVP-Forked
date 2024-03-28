@@ -1,13 +1,7 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
 
-export default function getProfile() {
+function Profile() {
 
-    return (
-        <>
-        <div className="profilepic"></div>
-        <div className="profile"></div>
-        </>
-    )
 }
+
+export default Profile;

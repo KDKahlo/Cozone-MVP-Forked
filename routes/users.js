@@ -12,11 +12,6 @@ router.get('/', async function(req, res, next) {
   } catch (err) {
     res.status(500).send({error: err.message});
   }
-//   db("SELECT * FROM profile;")
-//     .then(results => {
-//       res.send(results.data);
-//     })
-//     .catch(err => res.status(500).send(err));
 });
 
 // GET one user by ID
@@ -61,7 +56,7 @@ router.get("/region/:serverRegion", async function(req, res, next) {
 //       `INSERT INTO students (username, birthdate, email, password, serverRegion, currentRank) 
 //       VALUES ('${username}', '${birthdate}', '${email}', '${password}', '${serverRegion}', '${currentRank});`
 //     );
-//     const result = await db("SELECT * FROM profile;");
+//     const result = await db("SELECT * FROM allUsers;");
 //     res.send(result.data);
 //   } catch (err) {
 //     res.status(500).send(err)

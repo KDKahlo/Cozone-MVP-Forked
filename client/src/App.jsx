@@ -1,10 +1,6 @@
 import "./App.css";
-import Profile from "./components/Profile";
-// import Users from "./components/Users";
-// import Region from "./components/Region";
-// import Form from "./components/Form";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
   const [allPlayers, setAllPlayers] = useState(``);
@@ -17,7 +13,7 @@ function App() {
   async function getPlayers() {
   
     try {
-      const response = await fetch(`http://localhost:4000/users`);
+      const response = await fetch(`/api/users`); // /api/users is not working
       const playerList = await response.json();
       setPlayerList(playerList);
     } catch (error) {
