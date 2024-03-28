@@ -13,7 +13,7 @@ function App() {
   async function getPlayers() {
   
     try {
-      const response = await fetch(`/api/users`); // /api/users is not working
+      const response = await fetch(`/api/users`);
       const playerList = await response.json();
       setPlayerList(playerList);
     } catch (error) {

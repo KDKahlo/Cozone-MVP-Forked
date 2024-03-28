@@ -8,6 +8,7 @@ const USER_INITIAL_STATE = {
     password: "",
     serverRegion: "",
     currentRank: "",
+    avatarURL: "",
   }
 
 export default function Form() {

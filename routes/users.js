@@ -53,8 +53,8 @@ router.get("/region/:serverRegion", async function(req, res, next) {
 
 //   try {
 //     await db (
-//       `INSERT INTO students (username, birthdate, email, password, serverRegion, currentRank) 
-//       VALUES ('${username}', '${birthdate}', '${email}', '${password}', '${serverRegion}', '${currentRank});`
+//       `INSERT INTO allUsers (username, birthdate, email, password, serverRegion, currentRank, avatarURL) 
+//       VALUES ('${username}', '${birthdate}', '${email}', '${password}', '${serverRegion}', '${currentRank}, ${avatarURL});`
 //     );
 //     const result = await db("SELECT * FROM allUsers;");
 //     res.send(result.data);
