@@ -29,10 +29,10 @@ router.get("/allusers", async (req, res) => {
   try {
     const allusersquery = "SELECT * FROM allusers;";
     const allusersResults = await db(allusersquery);
-    console.log(`The results are: ${allusersResults}`);
+    console.log(`The results are: ${allusersResults.data}`);
   
 
-    res.send(allusersResults.data);
+    res.send(allusersResults);
     
   } catch (err) {
     console.error("Error occurred:", err);
