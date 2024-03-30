@@ -34,15 +34,15 @@ router.get("/region/:serverRegion", async function(req, res, next) {
 
 //GET allusers
 router.get("/allusers", async (req, res) => {
-  // Send back the full list of breweries
+  // Send back allusers
   console.log('reached the endpoint')
   try {
     const allusersquery = "SELECT * FROM allusers;";
     const allusersResults = await db(allusersquery);
-    console.log(`The results are: ${allusersResults}`);
+    console.log(`The results are: ${allusersResults.data}`);
   
 
-    res.send(allusersResults.data);
+    res.send(allusersResults);
     
   } catch (err) {
     console.error("Error occurred:", err);
