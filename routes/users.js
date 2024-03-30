@@ -2,17 +2,17 @@ var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
 
-/* GET all users */
-router.get('/', async function(req, res, next) {
+// /* GET all users */
+// router.get('/', async function(req, res, next) {
 
-  try {
-    const result = await db (`SELECT * FROM allUsers;`)
-    const users = result.data;
-    res.send(users);
-  } catch (err) {
-    res.status(500).send({error: err.message});
-  }
-});
+//   try {
+//     const result = await db (`SELECT * FROM allUsers;`)
+//     const users = result.data;
+//     res.send(users);
+//   } catch (err) {
+//     res.status(500).send({error: err.message});
+//   }
+// });
 
 // GET one user by ID
 router.get("/:userid", async function(req, res, next) {
