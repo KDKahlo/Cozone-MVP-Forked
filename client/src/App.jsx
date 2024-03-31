@@ -1,6 +1,7 @@
 import "./App.css";
-import { Link } from "react-router-dom";
+import { Route, Routes,} from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import Header from "./components/Header";
 
 function App() {
   const [allPlayers, setAllPlayers] = useState(``);
@@ -13,8 +14,12 @@ function App() {
   async function getPlayers() {
   
     try {
-      const response = await fetch(`/api/allusers`);
+      const response = await fetch(`/api/users`);
+      console.log('this is my fetch response for allusers', response);
+
       const playerList = await response.json();
+      console.log('this is my fetch response for playerlist:', playerList);
+
       setPlayerList(playerList);
     } catch (error) {
       console.error(error.message);
@@ -23,18 +28,17 @@ function App() {
 
   return (
     <>
-      <div>
-        <ul className="nav justify-content-center">
-          <li className="nav-item">
-             <Link to='/'>Home</Link>
-          </li>
-          <li className="nav-item">
-            <Link to='/profile'>Profile</Link>
-          </li>
-        </ul>
-      </div>
-        <h1>cozone.gg</h1>
-        <h3>connect and conquer</h3>
+    {/* Header */}
+    <Header />
+    {/* Player Cards */}
+    {/* Buttons below Player Cards */}
+
+
+    {/*Chat screen from top right icon  */}
+    {/* Individual Chat screen */}
+     
+
+       
       <hr />
       <div className="container text-center">
         <div className="row row-cols-4">
@@ -50,6 +54,10 @@ function App() {
           ))}
         </div>
       </div>
+
+      {/* <Routes>
+        <Route path="/" element={<Profile />} />
+      </Routes> */}
     </>
   );
 }

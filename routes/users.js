@@ -3,16 +3,16 @@ var router = express.Router();
 const db = require("../model/helper");
 
 // /* GET all users */
-// router.get('/', async function(req, res, next) {
+router.get('/', async function(req, res, next) {
 
-//   try {
-//     const result = await db (`SELECT * FROM allUsers;`)
-//     const users = result.data;
-//     res.send(users);
-//   } catch (err) {
-//     res.status(500).send({error: err.message});
-//   }
-// });
+  try {
+    const result = await db (`SELECT * FROM allUsers;`)
+    const users = result.data;
+    res.send(users);
+  } catch (err) {
+    res.status(500).send({error: err.message});
+  }
+});
 
 // GET one user by ID
 router.get("/:userid", async function(req, res, next) {
@@ -28,18 +28,19 @@ router.get("/:userid", async function(req, res, next) {
     }
 });
 
-// // GET user by region
-// router.get("/region/:serverRegion", async function(req, res, next) {
-//   const { serverRegion } = req.params;
-//   try {
-//     const result = await db(`SELECT * FROM allUsers WHERE serverRegion = '${ serverRegion }';`);
-//     if (!serverRegion) {
-//       res.status(404).send({message: "User not found", error: true});
-//     } res.send(result);
-//   } catch (err) {
-//     res.status(500).send(err);
-//   }
-// });
+// GET user by region
+//Postman should have: localhost:4000/api/users/region/Korea as example
+router.get("/region/:serverRegion", async function(req, res, next) {
+  const { serverRegion } = req.params;
+  try {
+    const result = await db(`SELECT * FROM allUsers WHERE serverRegion = '${ serverRegion }';`);
+    if (!serverRegion) {
+      res.status(404).send({message: "User not found", error: true});
+    } res.send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 /* POST a new user */
 // router.post("/form", async function(req, res, next) {
