@@ -1,7 +1,8 @@
 import "./App.css";
-import { Route, Routes,} from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
+import { ChairAltTwoTone, ChatBubble, ChatBubbleOutlineTwoTone } from "@mui/icons-material";
 
 function App() {
   const [allPlayers, setAllPlayers] = useState(``);
@@ -28,15 +29,22 @@ function App() {
 
   return (
     <>
-    {/* Header */}
+    {/* Header component */}
     <Header />
+
+  <Routes>
+    
+    {/* <Route path = "/" element={<Profile />} /> */}
+    {/* <Route path = "/Chat" element={<Chat  />} /> */}
     {/* Player Cards */}
     {/* Buttons below Player Cards */}
 
 
     {/*Chat screen from top right icon  */}
+
     {/* Individual Chat screen */}
-     
+  
+  </Routes>
 
        
       <hr />
@@ -55,9 +63,7 @@ function App() {
         </div>
       </div>
 
-      {/* <Routes>
-        <Route path="/" element={<Profile />} />
-      </Routes> */}
+    
     </>
   );
 }

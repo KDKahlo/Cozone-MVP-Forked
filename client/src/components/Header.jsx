@@ -2,6 +2,8 @@ import React from "react";
 import PersonIcon from '@mui/icons-material/Person';
 import ForumIcon from '@mui/icons-material/Forum';
 import "./Header.css";
+import IconButton from '@mui/material/IconButton';
+
 
 function Header() {
 
@@ -9,10 +11,13 @@ function Header() {
         <>
         <header >
           <div className="header">
-            
-            <PersonIcon className = "profile-icon" />
+            <IconButton>
+            <PersonIcon  fontSize="large" className = "profile-icon" />
+            </IconButton>
             <h1 className="App-title">cozone.gg</h1>
-            <ForumIcon  className = "chatbox-icon"/>
+            <IconButton>
+            <ForumIcon  fontSize="large" className = "chatbox-icon"/>
+            </IconButton>
       </div>
       <h3>connect and conquer</h3>
         </header>
