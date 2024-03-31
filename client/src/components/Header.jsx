@@ -7,22 +7,14 @@ function Header() {
 
     return (
         <>
-        <header className="App-header">
-          <div>
-            <h1 className="App-title">cozone.gg</h1>
-            <h3>connect and conquer</h3>
+        <header >
+          <div className="header">
+            
             <PersonIcon className = "profile-icon" />
+            <h1 className="App-title">cozone.gg</h1>
             <ForumIcon  className = "chatbox-icon"/>
-          {/*  </div>
-       <ul className="nav justify-content-center">
-          <li className="nav-item">
-             <Link to='/'>Home</Link>
-          </li>
-          <li className="nav-item">
-            <Link to='/profile'>Profile</Link>
-          </li>
-        </ul> */}
       </div>
+      <h3>connect and conquer</h3>
         </header>
         </>
     );
