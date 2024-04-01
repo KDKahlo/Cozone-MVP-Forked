@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import { ChairAltTwoTone, ChatBubble, ChatBubbleOutlineTwoTone } from "@mui/icons-material";
 import Profile from "./components/Profile"; 
 import Chat from "./components/Chat";  
+import TinderCard from "react-tinder-card";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
 
   <Routes>
     
-  <Route path="/Profile" element={<Profile playerList={playerList} />} />
+  <Route path="/Profile" element={<Profile playerList={playerList}/>} />
     <Route path = "/Chat" element={<Chat />} />
   
     {/* Player Cards */}
