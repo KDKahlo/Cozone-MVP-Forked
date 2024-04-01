@@ -8,7 +8,7 @@ import Chat from "./components/Chat";
 
 
 function App() {
-  const [allPlayers, setAllPlayers] = useState(``);
+ 
   const [playerList, setPlayerList] = useState([]);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
 
   <Routes>
     
-    <Route path = "/Profile" element={<Profile />} />
+  <Route path="/Profile" element={<Profile playerList={playerList} />} />
     <Route path = "/Chat" element={<Chat />} />
   
     {/* Player Cards */}
@@ -52,21 +52,7 @@ function App() {
 
        
       <hr />
-      <div className="container text-center">
-        <div className="row row-cols-4">
-          {playerList.map((playerList) => (
-          <div key={playerList.userid}>
-            <img
-              className="player-avatar"
-              src={playerList.avatarURL}
-              alt={`Profile picture of ${playerList.username}`}
-            /><br />
-            <p className="membertag">{playerList.username}, {playerList.currentRank}, {playerList.serverRegion}</p>
-          </div>
-          ))}
-        </div>
-      </div>
-
+    
     
     </>
   );
