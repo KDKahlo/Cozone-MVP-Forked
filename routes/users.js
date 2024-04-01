@@ -58,8 +58,7 @@ router.post("/", async function(req, res, next) {
     await db (
       `INSERT INTO allusers (username, birthdate, email, password, serverRegion, currentRank, avatarURL) 
       VALUES ('${username}','${birthdate}','${email}','${password}','${serverRegion}','${currentRank}','${avatarURL}');`
-      // INSERT INTO allUsers (username, birthdate, email, password, serverRegion, currentRank, avatarURL) 
-      // VALUES ('SadPanda', '1995-03-28', 'example@example.com', 'SpaceR00123', 'NA', 'Immortal', 'https://64.media.tumblr.com/a302a53ca34734535f083dcfa42ef0a4/68806959c7b602c8-9d/s2048x3072/5f9a72bc66deb244105b6db1ec36d968b19a89fa.jpg');
+     
 
 
       );
