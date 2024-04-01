@@ -1,9 +1,10 @@
 
 .card {
     position: relative;
-    width: 350px;
+    margin-top: 20px;
+    width: 450px;
     padding: 20px;
-    max-width: 85vw;
+    max-width: 95vw;
     height: 50vh;
     border-radius: 20px;
     background-size: cover;
@@ -12,13 +13,21 @@
    box-shadow: 0px 5px 10px 0px rgba(6, 85, 118, 0.3);
 }
 .membertag {
-    color: rgb(79, 129, 222);
+    position: absolute;
+    bottom: 10px;
+    color: rgb(42, 87, 117);
+    font-weight: bold;
+    border: 1px solid rgb(42, 87, 117);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+    background-color: black;
 }
 .playerCards_cardContainer {
     display: flex;
     justify-content: center;
     margin-top: 10vh;
-    margin-right: 45vh;
+    margin-right: 50vh;
 
 }
 .swipe {

@@ -6,6 +6,7 @@ import { ChairAltTwoTone, ChatBubble, ChatBubbleOutlineTwoTone } from "@mui/icon
 import Profile from "./components/Profile"; 
 import Chat from "./components/Chat";  
 import TinderCard from "react-tinder-card";
+import SwipeButtons from "./components/SwipeButtons";
 
 
 function App() {
@@ -38,7 +39,9 @@ function App() {
 
   <Routes>
     
-  <Route path="/Profile" element={<Profile playerList={playerList}/>} />
+  <Route path="/Profile" element={<Profile playerList={playerList}/>}>
+  <Route path="SwipeButtons" element={<SwipeButtons />} /> 
+  </Route>
     <Route path = "/Chat" element={<Chat />} />
   
     {/* Player Cards */}

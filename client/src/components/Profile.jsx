@@ -5,6 +5,7 @@ import "./Profile.css"
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import IconButton from '@mui/material/IconButton';
 import TinderCard from 'react-tinder-card';
+import SwipeButtons from './SwipeButtons';
 
 function Profile({ playerList }) {
     const [newPlayer, setNewPlayer] = useState({
@@ -49,7 +50,7 @@ function Profile({ playerList }) {
     return (
         <>
            
-            <h1>Profiles</h1>
+            <h1>Player Profiles</h1>
             <div className="playerCards_cardContainer">
                 <div className="">
                     {playerList.map((player) => (
@@ -60,7 +61,9 @@ function Profile({ playerList }) {
                             <p className="membertag">{player.username}, {player.currentRank}, {player.serverRegion}</p>
                         </div>
                         </TinderCard>
+                       
                     ))}
+                     <SwipeButtons/>
                 </div>
             </div>
             {/* <div>
