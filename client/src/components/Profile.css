@@ -1,0 +1,109 @@
+/* #root {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(#e66465, #9198e5); 
+  } */
+  
+  * {
+    user-select: none;
+  }
+  
+  .cardContainer {
+    position: relative;
+    width: 90vw;
+    max-width: 260px;
+    height: 300px;
+  }
+  
+  .card {
+    position: absolute;
+    justify-items: center;
+    margin-left: 175px;
+    margin-top: 25px;
+    background-color: #fff;
+    width: 80vw;
+    max-width: 260px;
+    height: 300px;
+    box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .card h3 {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    color: #fff;
+  }
+  
+  .buttons {
+    
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 625px) {
+    .buttons {
+      flex-direction: column;
+    }
+  }
+  .buttons {
+    margin-top: 80px;
+  }
+  .buttons button {
+    flex-shrink: 0;
+    padding: 10px;
+    
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    background-color: #9198e5;
+    transition: 200ms;
+    margin: 10px;
+    font-weight: bolder;
+    width: 160px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+  }
+  
+  .buttons button:hover {
+    transform: scale(1.05);
+  }
+  
+  .infoText {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    color: #fff;
+    animation-name: popup;
+    animation-duration: 800ms;
+  }
+  
+  @keyframes popup {
+    0%   { transform: scale(1,1) }
+    10%  { transform: scale(1.1,1.1) }
+    30%  { transform: scale(.9,.9) }
+    50%  { transform: scale(1,1) }
+    57%  { transform: scale(1,1) }
+    64%  { transform: scale(1,1) }
+    100% { transform: scale(1,1) }
+  }
+  
+  .card:not(:last-child) {
+    z-index: 1; /* Ensure only the top card is visible */
+  }
+  
+  .card.swipe-left {
+    transform: translateX(-100%); /* Move left for swipe left animation */
+  }
+  
+  .card.swipe-right {
+    transform: translateX(100%); /* Move right for swipe right animation */
+  }
