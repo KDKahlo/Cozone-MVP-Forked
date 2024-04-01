@@ -50,26 +50,20 @@ function Profile({ playerList }) {
         <>
            
             <h1>Profiles</h1>
-            <div className="container text-center">
-                <div className="row row-cols-4">
+            <div className="playerCards_cardContainer">
+                <div className="">
                     {playerList.map((player) => (
                         <TinderCard key={player.userid} 
                          preventSwipe={["up", "down"]}
                          className="swipe">
-                        <div className="card"  >
-                               <img
-                                className="player-avatar"
-                                src={player.avatarURL}
-                                alt={`Profile picture of ${player.username}`}
-                                 />
-                            <br />
+                        <div className="card"  style={{backgroundImage: `url(${player.avatarURL})`}}>
                             <p className="membertag">{player.username}, {player.currentRank}, {player.serverRegion}</p>
                         </div>
                         </TinderCard>
                     ))}
                 </div>
             </div>
-            <div>
+            {/* <div>
                 
                 <h2>Add Player</h2>
                 <form onSubmit={addPlayer}>
@@ -85,7 +79,7 @@ function Profile({ playerList }) {
               <PersonAddIcon type="submit" fontSize="large" className = "profile-icon" />
              </IconButton>
                 </form>
-            </div>
+            </div> */}
         </>
     );
 }
