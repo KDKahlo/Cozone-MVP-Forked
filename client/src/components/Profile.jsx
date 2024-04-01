@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import 
+import {Link} from "react-router-dom"
+import Navbar from './Navbar';
 
 function Profile() {
+
+    return (
+<>
+       
+        <h1>Profile Page</h1>
+</> 
+    );
 
 }
 

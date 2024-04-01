@@ -1,8 +1,11 @@
 import "./App.css";
 import { Route, Routes} from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import { ChairAltTwoTone, ChatBubble, ChatBubbleOutlineTwoTone } from "@mui/icons-material";
+import Profile from "./components/Profile"; 
+import Chat from "./components/Chat";  
+
 
 function App() {
   const [allPlayers, setAllPlayers] = useState(``);
@@ -30,12 +33,13 @@ function App() {
   return (
     <>
     {/* Header component */}
-    <Header />
+    <Navbar />
 
   <Routes>
     
-    {/* <Route path = "/" element={<Profile />} /> */}
-    {/* <Route path = "/Chat" element={<Chat  />} /> */}
+    <Route path = "/Profile" element={<Profile />} />
+    <Route path = "/Chat" element={<Chat />} />
+  
     {/* Player Cards */}
     {/* Buttons below Player Cards */}
 
