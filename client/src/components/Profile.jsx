@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 function Profile({ playerList }) {
     return (
       <>
-        <h1>Profile Page</h1>
+        <h1>Profiles</h1>
         <div className="container text-center">
           <div className="row row-cols-4">
             {playerList.map((player) => (
