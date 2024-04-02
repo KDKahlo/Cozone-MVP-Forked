@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { ChairAltTwoTone, ChatBubble, ChatBubbleOutlineTwoTone } from "@mui/icons-material";
 import Profile from "./components/Profile"; 
-import Chat from "./components/Chat";  
+import Chat from "./components/Chats";  
 import TinderCard from "react-tinder-card";
 import SwipeButtons from "./components/SwipeButtons";
 
@@ -38,18 +38,13 @@ function App() {
     <Navbar />
 
   <Routes>
-    
+      {/* Player Cards */}
   <Route path="/Profile" element={<Profile playerList={playerList}/>}>
+     {/* Buttons below Player Cards */}
   <Route path="SwipeButtons" element={<SwipeButtons />} /> 
   </Route>
-    <Route path = "/Chat" element={<Chat />} />
-  
-    {/* Player Cards */}
-    {/* Buttons below Player Cards */}
-
-
     {/*Chat screen from top right icon  */}
-
+ <Route path = "/Chat" element={<Chat player={playerList} />} />
     {/* Individual Chat screen */}
   
   </Routes>
