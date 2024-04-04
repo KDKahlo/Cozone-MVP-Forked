@@ -4,20 +4,14 @@ import Navbar from './Navbar';
 import "./Chats.css"
 import { ChatBubbleOutlineSharp } from "@mui/icons-material";
 
-function Chat({ player }) {
+function Chats({ player }) {
 
 
 return (
 <>
-{/* <div className="chat">
-   <ChatBubbleOutlineSharp 
-   name= "KDKahlo"
-   messages="What's up?"
-   timestamp="35 minutes ago"
-   profilePic="https://robohash.org/c18a32f4fb6b1679c88268773463538f?set=set4&bgset=&size=400x400"
-   />
-   
-    </div> */}
+    <div className="chat">
+        <h1>Chats</h1>
+    </div>
 </>
 );    
 }
@@ -25,4 +19,4 @@ return (
 
 
 
-export default Chat;
+export default Chats;

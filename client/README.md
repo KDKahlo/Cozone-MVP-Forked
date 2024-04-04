@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ## Feature Extension
 
-For the feature extension, I wanted to give the player profiles, the Tinder card effect and make it possible to swipe through player profiles to find someone you would like to game with. If everything works as I hope in the end, when you swipe to the left it will put the players in a grouping of possible players to game with. Ones swiped to the right will be omited as possible gaming buddies. There is also a favorites button that I would like to give functionality to, that will allow a player to save any player they click that button on, into a favorites list. Not sure if that is redundant. Would also like to round it out by allowing the player to filter the players before swiping or swiping the whole list as they see fit.
+For the feature extension, I wanted to give the player profiles, the Tinder card effect and make it possible to swipe through player profiles to find someone you would like to game with. If everything works as I hope in the end, when you swipe to the right it will put the players in a grouping of possible players to game with. Ones swiped to the left will be omitted as possible gaming buddies. There is also a favorites button that I would like to give functionality to, that will allow a user to save any player they click that button on, into a favorites list. Not sure if that is redundant. There is also a refresh button to refresh the player list. I would finally like to round it out by allowing the user to filter the players before swiping or swiping the whole list as they see fit.
 
 I included a navbar, so the future extension into chat would be possible as well.
 

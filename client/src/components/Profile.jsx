@@ -18,26 +18,38 @@ function Profile({ playerList }) {
         avatarURL: ""
     });
 
-    async function addPlayer() {
-        try {
-            const response = await fetch("/api/users", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newPlayer)
-            });
-            if (response.ok) {
-                const data = await response.json();
-                console.log("Player added successfully:", data);
+    const [rankFilter, setRankFilter] = useState("");
+    const [filteredPlayers, setFilteredPlayers] = useState([]);
+
+//function that handles the change in the rank filter
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const filtered = playerList.filter(player => player.currentRank === rankFilter);
+    setFilteredPlayers(filtered);
+}
+
+//function to add new player
+    // async function addPlayer() {
+    //     try {
+    //         const response = await fetch("/api/users", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify(newPlayer)
+    //         });
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             console.log("Player added successfully:", data);
              
-            } else {
-                console.error("Failed to add player");
-            }
-        } catch (error) {
-            console.error("Error adding player:", error);
-        }
-    }
+    //         } else {
+    //             console.error("Failed to add player");
+    //         }
+    //     } catch (error) {
+    //         console.error("Error adding player:", error);
+    //     }
+    // }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -51,7 +63,57 @@ function Profile({ playerList }) {
         <>
            
             <h1>Player Profiles</h1>
-            <div className="playerCards_cardContainer">
+           
+            <div className = "" id = "label-input-button">
+         <form>       
+          <label htmlFor="exampleDataList" 
+          className="form-label protest-strike-regular">Search by rank:</label>
+        <div className = "" id = "input-group"> 
+             <input className="form-control" 
+             list="datalistOptions" id="exampleDataList" 
+             placeholder="Choose a rank"
+             type="text"
+             value={rankFilter}
+             onChange={(e) => setRankFilter(e.target.value)} />
+             <button className="btn mb-3 protest-strike-regular" 
+             type="submit">Submit</button>
+        </div>
+        </form> 
+        </div>
+          <datalist id="datalistOptions">
+              <option value="immortal"/>
+              <option value="diamond"/>
+              <option value="silver"/>
+              <option value="gold"/>
+              <option value="platinum"/>
+              <option value="ascendant"/>
+          </datalist>
+
+
+          <div className="playerCards_cardContainer">
+      <div className="">
+        {filteredPlayers.length > 0 ? (
+          filteredPlayers.map((player) => (
+            <TinderCard key={player.userid} preventSwipe={["up", "down"]} className="swipe">
+              <div className="card" style={{backgroundImage: `url(${player.avatarURL})`}}>
+                <p className="membertag">{player.username}, {player.currentRank}, {player.serverRegion}</p>
+              </div>
+            </TinderCard>
+          ))
+        ) : (
+          playerList.map((player) => (
+            <TinderCard key={player.userid} preventSwipe={["up", "down"]} className="swipe">
+              <div className="card" style={{backgroundImage: `url(${player.avatarURL})`}}>
+                <p className="membertag">{player.username}, {player.currentRank}, {player.serverRegion}</p>
+              </div>
+            </TinderCard>
+          ))
+        )}
+        <SwipeButtons/>
+      </div>
+    </div>
+
+            {/* <div className="playerCards_cardContainer">
                 <div className="">
                     {playerList.map((player) => (
                         <TinderCard key={player.userid} 
@@ -65,7 +127,7 @@ function Profile({ playerList }) {
                     ))}
                      <SwipeButtons/>
                 </div>
-            </div>
+            </div> */}
             {/* <div>
                 
                 <h2>Add Player</h2>

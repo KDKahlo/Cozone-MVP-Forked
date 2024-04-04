@@ -13,4 +13,4 @@ function Chatbox({name, messages, timestamp, profilePic}) {
   )
 }
 
-export default Chatbox
+export default Chatbox;

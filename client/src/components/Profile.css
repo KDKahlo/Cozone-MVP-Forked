@@ -1,9 +1,9 @@
 
 .card {
     position: relative;
-    margin-top: 20px;
+    margin-top: 2px;
     width: 450px;
-    padding: 20px;
+    padding: 10px;
     max-width: 95vw;
     height: 50vh;
     border-radius: 20px;
@@ -26,7 +26,7 @@
 .playerCards_cardContainer {
     display: flex;
     justify-content: center;
-    margin-top: 10vh;
+    margin-top: 3vh;
     margin-right: 50vh;
 
 }

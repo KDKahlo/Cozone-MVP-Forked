@@ -3,9 +3,9 @@ import "./SwipeButton.css"
 import ReplayIcon from '@mui/icons-material/Replay';
 import CloseIcon from '@mui/icons-material/Close';
 import StarRateIcon from '@mui/icons-material/StarRate';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FlashOnIcon from '@mui/icons-material/FlashOn';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { IconButton } from '@material-ui/core';
+
 function SwipeButtons() {
   return (
     <div className ="swipeButtons">
@@ -15,14 +15,11 @@ function SwipeButtons() {
         <IconButton className="swipeButtons_left">
          <CloseIcon fontSize="large" />
         </IconButton>
+         <IconButton className="swipeButtons_right">
+          <ThumbUpIcon fontSize="large" />
+        </IconButton>
         <IconButton className="swipeButtons_star">
           <StarRateIcon fontSize="large" />
-        </IconButton>
-        <IconButton className="swipeButtons_right">
-          <FavoriteIcon fontSize="large" />
-        </IconButton>
-        <IconButton className="swipeButtons_lightning">
-          <FlashOnIcon fontSize="large" />
         </IconButton>
         </div>
   )

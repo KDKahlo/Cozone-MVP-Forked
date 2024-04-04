@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { ChairAltTwoTone, ChatBubble, ChatBubbleOutlineTwoTone } from "@mui/icons-material";
 import Profile from "./components/Profile"; 
-import Chat from "./components/Chats";  
+import Chats from "./components/Chats";  
 import TinderCard from "react-tinder-card";
 import SwipeButtons from "./components/SwipeButtons";
 
@@ -12,16 +12,16 @@ import SwipeButtons from "./components/SwipeButtons";
 function App() {
  
   const [playerList, setPlayerList] = useState([]);
+  
 
   useEffect(() => {
     getPlayers();
   }, []);
 
   async function getPlayers() {
-  
     try {
       const response = await fetch(`/api/users`);
-      console.log('this is my fetch response for allusers', response);
+      
 
       const playerList = await response.json();
       console.log('this is my fetch response for playerlist:', playerList);
@@ -32,6 +32,8 @@ function App() {
   }
   }
 
+
+
   return (
     <>
     {/* Header component */}
@@ -39,12 +41,12 @@ function App() {
 
   <Routes>
       {/* Player Cards */}
-  <Route path="/Profile" element={<Profile playerList={playerList}/>}>
+  <Route path="/Profile" element={<Profile playerList={playerList} />}>
      {/* Buttons below Player Cards */}
   <Route path="SwipeButtons" element={<SwipeButtons />} /> 
   </Route>
     {/*Chat screen from top right icon  */}
- <Route path = "/Chat" element={<Chat player={playerList} />} />
+ <Route path = "/Chats" element={<Chats />} />
     {/* Individual Chat screen */}
   
   </Routes>

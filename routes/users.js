@@ -3,6 +3,7 @@ var router = express.Router();
 const db = require("../model/helper");
 
 // /* GET all users */
+//localhost:4000/api/users/
 router.get('/', async function(req, res, next) {
 
   try {
@@ -27,7 +28,20 @@ router.get("/:userid", async function(req, res, next) {
     res.status(500).send(err);
     }
 });
-
+//GET user by rank
+//To test in Postman you need the following: localhost:4000/api/users/rank/diamond <---replace currentRank with any possible rank
+router.get("/rank/:currentRank", async function(req, res, next) {
+  const { currentRank } = req.params;
+  console.log(`'the currentRank is:'${currentRank}`);
+  try {
+    const result = await db(`SELECT * FROM allUsers WHERE currentRank = '${ currentRank }';`);
+    if (!currentRank) {
+      res.status(404).send({message: `"User with ${currentRank} not found"`, error: true});
+    } res.send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 // GET user by region
 //Postman should have: localhost:4000/api/users/region/Korea as example
 router.get("/region/:serverRegion", async function(req, res, next) {
