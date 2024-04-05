@@ -3,9 +3,10 @@ import { Link } from "react-router-dom"
 import Navbar from './Navbar';
 import "./Profile.css"
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import IconButton from '@mui/material/IconButton';
 import TinderCard from 'react-tinder-card';
 import SwipeButtons from './SwipeButtons';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { IconButton } from '@material-ui/core';
 
 function Profile({ playerList }) {
     const [newPlayer, setNewPlayer] = useState({
@@ -71,16 +72,17 @@ function Profile({ playerList }) {
             <div className = "" id = "label-input-button">
          <form onSubmit={handleSubmit}>       
           <label htmlFor="exampleDataList" 
-          className="form-label protest-strike-regular">Search by rank:</label>
-        <div className = "" id = "input-group"> 
-             <input className="form-control" 
+          className=""></label>
+        <div className = "filterByRank" id = "input-group"> 
+             <input className="filterInputField" 
              list="datalistOptions" id="exampleDataList" 
-             placeholder="Choose a rank"
+             placeholder="Filter by rank"
              type="text"
              value={rankFilter}
              onChange={(e) => setRankFilter(e.target.value)} />
-             <button className="btn mb-3 protest-strike-regular" 
-             type="submit">Submit</button>
+             <IconButton type="submit" className="filterIcon">
+            <FilterListIcon fontSize ="large"/>
+             </IconButton>
         </div>
         </form> 
         </div>
@@ -117,21 +119,7 @@ function Profile({ playerList }) {
       </div>
     </div>
 
-            {/* <div className="playerCards_cardContainer">
-                <div className="">
-                    {playerList.map((player) => (
-                        <TinderCard key={player.userid} 
-                         preventSwipe={["up", "down"]}
-                         className="swipe">
-                        <div className="card"  style={{backgroundImage: `url(${player.avatarURL})`}}>
-                            <p className="membertag">{player.username}, {player.currentRank}, {player.serverRegion}</p>
-                        </div>
-                        </TinderCard>
-                       
-                    ))}
-                     <SwipeButtons/>
-                </div>
-            </div> */}
+            
             {/* <div>
                 
                 <h2>Add Player</h2>

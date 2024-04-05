@@ -33,3 +33,16 @@
 .swipe {
     position: absolute;
 }
+.filterByRank {
+    display: flex;
+    justify-content: center;
+}
+.filterInputField {
+    width: 50%;
+    border-radius: 15px;
+    
+}
+
+.filterIcon{
+color: gray !important
+}
