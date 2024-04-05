@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom"
 import Navbar from './Navbar';
 import "./Profile.css"
@@ -9,6 +9,8 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { IconButton } from '@material-ui/core';
 
 function Profile({ playerList }) {
+
+
     const [newPlayer, setNewPlayer] = useState({
         username: "",
         birthdate: "",
@@ -21,6 +23,10 @@ function Profile({ playerList }) {
 
     const [rankFilter, setRankFilter] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState([]);
+    const [likedCards, setLikedCards] = useState([]);
+    const tinderCardRef = useRef();
+   
+     
 
 //function that handles the change in the rank filter
     const handleSubmit = async (e) => {
@@ -28,11 +34,23 @@ function Profile({ playerList }) {
     
     const filtered = playerList.filter(player => player.currentRank === rankFilter);
     setFilteredPlayers(filtered);
-
+   
     console.log("Rank Filter:", rankFilter);
     
-
 }
+
+//  Function to handle swipe depending on direction
+const onSwipe = (direction, player) => {
+    if (direction === 'right') {
+      // Add the swiped card to the liked list
+      setLikedCards(prevLikedCards => [...prevLikedCards, player]);
+    } else if (direction === 'left') {
+      // Ignore left swipes
+      return; // Return early from the function
+    }
+  };
+  
+  
 
 //function to add new player
     // async function addPlayer() {
@@ -63,6 +81,11 @@ function Profile({ playerList }) {
             [name]: value
         }));
     }
+
+    const restoreCard = async () => {
+        await tinderCardRef.current.restoreCard();
+      };
+
 
     return (
         <>
@@ -97,10 +120,17 @@ function Profile({ playerList }) {
 
 
           <div className="playerCards_cardContainer">
+            {/* display will either be full playerlist or filtered by rank display */}
       <div className="">
         {filteredPlayers.length > 0 ? (
           filteredPlayers.map((player) => (
-            <TinderCard key={player.userid} preventSwipe={["up", "down"]} className="swipe">
+            <TinderCard key={player.userid}
+             preventSwipe={["up", "down"]} 
+             className="swipe"
+              onSwipe={(direction) => onSwipe(direction, player)}
+              onCardLeftScreen={() => onCardLeftScreen(player.userid)}
+              ref={tinderCardRef}
+              >
               <div className="card" style={{backgroundImage: `url(${player.avatarURL})`}}>
                 <p className="membertag">{player.username}, {player.currentRank}, {player.serverRegion}</p>
               </div>
@@ -108,18 +138,39 @@ function Profile({ playerList }) {
           ))
         ) : (
           playerList.map((player) => (
-            <TinderCard key={player.userid} preventSwipe={["up", "down"]} className="swipe">
+            <TinderCard key={player.userid} 
+            preventSwipe={["up", "down"]} 
+            className="swipe"
+            onSwipe={(direction) => onSwipe(direction, player)}
+            onCardLeftScreen={() => onCardLeftScreen(player.userid)}
+            ref={tinderCardRef}
+            >
               <div className="card" style={{backgroundImage: `url(${player.avatarURL})`}}>
                 <p className="membertag">{player.username}, {player.currentRank}, {player.serverRegion}</p>
               </div>
             </TinderCard>
           ))
         )}
-        <SwipeButtons/>
+         <SwipeButtons restoreCard={restoreCard} />
       </div>
     </div>
 
+            {/* Liked Cards section */}
+      <div className="liked-cards">
+        <h2>Liked Cards</h2>
+        <div className="liked-cards-list">
+         
+          {likedCards.map((card, index) => (
+            <div key={index} className="liked-card">
+              {/* Display card details */}
+              <p>{card.username}, {card.currentRank}, {card.serverRegion}</p>
             
+            </div>
+          ))}
+        </div>
+      </div>
+
+
             {/* <div>
                 
                 <h2>Add Player</h2>

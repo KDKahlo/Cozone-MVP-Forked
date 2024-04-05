@@ -6,10 +6,17 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { IconButton } from '@material-ui/core';
 
-function SwipeButtons() {
+function SwipeButtons({restoreCard}) {
+
+  const handleRestoreCardClick = () => {
+    // Call restoreCard() when the ReplayIcon button is clicked
+    restoreCard();
+  };
+
+
   return (
     <div className ="swipeButtons">
-        <IconButton className="swipeButtons_repeat">
+        <IconButton className="swipeButtons_repeat" onClick={handleRestoreCardClick}>
          <ReplayIcon fontSize="large" />
         </IconButton>
         <IconButton className="swipeButtons_left">
