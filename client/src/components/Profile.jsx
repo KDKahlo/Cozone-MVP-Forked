@@ -34,8 +34,9 @@ function Profile({ playerList }) {
     
     const filtered = playerList.filter(player => player.currentRank === rankFilter);
     setFilteredPlayers(filtered);
-   
+    setRankFilter("");
     console.log("Rank Filter:", rankFilter);
+    
     
 }
 
