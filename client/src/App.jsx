@@ -2,7 +2,6 @@ import "./App.css";
 import { Route, Routes} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-import { ChairAltTwoTone, ChatBubble, ChatBubbleOutlineTwoTone } from "@mui/icons-material";
 import Profile from "./components/Profile"; 
 import Chats from "./components/Chats";  
 import TinderCard from "react-tinder-card";

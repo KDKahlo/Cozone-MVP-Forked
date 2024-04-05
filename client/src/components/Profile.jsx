@@ -27,6 +27,10 @@ function Profile({ playerList }) {
     
     const filtered = playerList.filter(player => player.currentRank === rankFilter);
     setFilteredPlayers(filtered);
+
+    console.log("Rank Filter:", rankFilter);
+    
+
 }
 
 //function to add new player
@@ -65,7 +69,7 @@ function Profile({ playerList }) {
             <h1>Player Profiles</h1>
            
             <div className = "" id = "label-input-button">
-         <form>       
+         <form onSubmit={handleSubmit}>       
           <label htmlFor="exampleDataList" 
           className="form-label protest-strike-regular">Search by rank:</label>
         <div className = "" id = "input-group"> 
@@ -81,12 +85,12 @@ function Profile({ playerList }) {
         </form> 
         </div>
           <datalist id="datalistOptions">
-              <option value="immortal"/>
-              <option value="diamond"/>
-              <option value="silver"/>
-              <option value="gold"/>
-              <option value="platinum"/>
-              <option value="ascendant"/>
+              <option value="Immortal"/>
+              <option value="Diamond"/>
+              <option value="Silver"/>
+              <option value="Gold"/>
+              <option value="Platinum"/>
+              <option value="Ascendant"/>
           </datalist>
 
 
