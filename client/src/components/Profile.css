@@ -26,8 +26,8 @@
 .playerCards_cardContainer {
     display: flex;
     justify-content: center;
-    margin-top: 3vh;
-    margin-right: 50vh;
+    margin-top: 8vh;
+    margin-right: 60vh;
 
 }
 .swipe {

@@ -84,6 +84,7 @@ const onSwipe = (direction, player) => {
     }
 
     const restoreCard = async () => {
+     
         await tinderCardRef.current.restoreCard();
       };
 
@@ -129,7 +130,7 @@ const onSwipe = (direction, player) => {
              preventSwipe={["up", "down"]} 
              className="swipe"
               onSwipe={(direction) => onSwipe(direction, player)}
-              onCardLeftScreen={() => onCardLeftScreen(player.userid)}
+              
               ref={tinderCardRef}
               >
               <div className="card" style={{backgroundImage: `url(${player.avatarURL})`}}>
@@ -143,7 +144,7 @@ const onSwipe = (direction, player) => {
             preventSwipe={["up", "down"]} 
             className="swipe"
             onSwipe={(direction) => onSwipe(direction, player)}
-            onCardLeftScreen={() => onCardLeftScreen(player.userid)}
+          
             ref={tinderCardRef}
             >
               <div className="card" style={{backgroundImage: `url(${player.avatarURL})`}}>

@@ -40,9 +40,9 @@ function App() {
 
   <Routes>
       {/* Player Cards */}
-  <Route path="/Profile" element={<Profile playerList={playerList} />}>
+  <Route path = "/Profile" element={<Profile playerList={playerList} />}>
      {/* Buttons below Player Cards */}
-  <Route path="SwipeButtons" element={<SwipeButtons />} /> 
+  <Route path = "SwipeButtons" element={<SwipeButtons />} /> 
   </Route>
     {/*Chat screen from top right icon  */}
  <Route path = "/Chats" element={<Chats />} />

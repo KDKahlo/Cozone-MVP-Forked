@@ -19,7 +19,7 @@ function Navbar () {
             </IconButton>
             </Link>
             <h1 className="App-title">cozone.gg</h1>
-            <Link to = "/Chat">
+            <Link to = "/Chats">
             <IconButton>
             <ForumIcon  fontSize="large" className = "chatbox-icon"/>
             </IconButton>

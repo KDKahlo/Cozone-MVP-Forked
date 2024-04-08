@@ -4,6 +4,8 @@
     display: flex;
     justify-content: space-evenly;
     width: 25%;
+    margin-left:0vh;
+    margin-bottom: 2vh;
 }
 .swipeButtons .MuiIconButton-root{
     margin-right: 1vw;
