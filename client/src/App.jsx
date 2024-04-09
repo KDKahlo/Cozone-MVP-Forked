@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile"; 
 import Chats from "./components/Chats";  
-import TinderCard from "react-tinder-card";
 import SwipeButtons from "./components/SwipeButtons";
 
 
