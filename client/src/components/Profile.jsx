@@ -88,6 +88,14 @@ const onSwipe = (direction, player) => {
         await tinderCardRef.current.restoreCard();
       };
 
+      // const handleLeftSwipe = (player) => {
+      //   onSwipe('left', player);
+      // };
+    
+      // const handleRightSwipe = (player) => {
+      //   onSwipe('right', player);
+      // };
+
 
     return (
         <>
@@ -153,7 +161,9 @@ const onSwipe = (direction, player) => {
             </TinderCard>
           ))
         )}
-         <SwipeButtons restoreCard={restoreCard} />
+         <SwipeButtons restoreCard={restoreCard}  />
+         {/* add to code later when debugged for button clicking left and right to swipe cards
+          handleLeftSwipe={handleLeftSwipe} handleRightSwipe={handleRightSwipe} */}
       </div>
     </div>
 

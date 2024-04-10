@@ -6,12 +6,13 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { IconButton } from '@material-ui/core';
 
-function SwipeButtons({restoreCard}) {
+function SwipeButtons({restoreCard, onSwipe, player}) {
 
   const handleRestoreCardClick = () => {
     // Call restoreCard() when the ReplayIcon button is clicked
     restoreCard();
   };
+  
 
 
   return (
@@ -20,9 +21,11 @@ function SwipeButtons({restoreCard}) {
          <ReplayIcon fontSize="large" />
         </IconButton>
         <IconButton className="swipeButtons_left">
+           {/* For adding to code when debugged ====> onClick={handleLeftSwipe(player)} */}
          <CloseIcon fontSize="large" />
         </IconButton>
-         <IconButton className="swipeButtons_right">
+         <IconButton className="swipeButtons_right" >
+          {/* for adding to code when debugged ====> onClick={handleRightSwipe(player)} */}
           <ThumbUpIcon fontSize="large" />
         </IconButton>
         <IconButton className="swipeButtons_star">
