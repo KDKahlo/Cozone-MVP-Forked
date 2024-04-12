@@ -77,8 +77,3 @@ a:visited {
 MODAL */
 
 /* Login css */
-.login-fields {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}

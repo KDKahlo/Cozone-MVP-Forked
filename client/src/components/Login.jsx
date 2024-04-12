@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
@@ -70,27 +70,31 @@ function Login() {
   // };
 
   const handleNavigateToCreateNewAccountPage = () => {
-    navigate("./CreateNewAccountPage");
+    navigate("/CreateNewAccountPage");
     console.log("Navigating to Create New Account Page");
   }
 
   return (
     <div>
-      <div>
+      <div className="login-fields">
+        <div className="input-fields">
         <input
           value={username}
           onChange={handleChange}
           name="username"
           type="text"
-          className="form-control mb-2"
+          placeholder="username"
+          
         />
         <input
           value={password}
           onChange={handleChange}
           name="password"
           type="password"
-          className="form-control mb-2"
+          placeholder="password"
+         
         />
+        </div>
         <div className="d-flex gap-2 justify-content-center">
           <button className="btn login-button" onClick={login}>
             Log in
@@ -103,8 +107,7 @@ function Login() {
         {/* need to handle adding new user link to CreateNewAccountpage */}
     <p>
         Don't have a Login and Password? 
-        <span onClick={handleNavigateToCreateNewAccountPage} 
-          style={{ cursor: 'pointer', textDecoration: 'underline' }}>Click to create new account</span>
+        <Link to="./CreateNewAccountPage" onClick={handleNavigateToCreateNewAccountPage} className="link-to-add-new-acct">Click to create new account</Link> 
     </p>
         </div>
         </div>

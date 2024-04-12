@@ -1,12 +1,12 @@
 import "./App.css";
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes, useLocation} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile"; 
 import Chats from "./components/Chats";  
 import SwipeButtons from "./components/SwipeButtons";
 import Login from "./components/Login.jsx";
-import CreateNewAccountPage from "./components/CreateNewAccountPage";
+import CreateNewAccountPage from "./components/CreateNewAccountPage.jsx";
 
 
 
@@ -35,8 +35,11 @@ function App() {
   }
   }
 
+  // Use React Router's useLocation to get the current path
+  // const location = useLocation();
 
-
+  // Check if the current path is "/login" to determine Navbar visibility
+  // const isNavbarVisible = location.pathname !== "/login";
 
 
   return (
@@ -44,13 +47,14 @@ function App() {
  
     {/* Header component */}
      <Navbar />
-   <div className="login-fields">
-      <Login path = "/" />
   
-   </div>
+
+  
+   
    
   <Routes>
- 
+  <Route path="/" element={<Login />} />
+  <Route path="/CreateNewAccountPage" element={<CreateNewAccountPage />} />
       {/* Player Cards */}
   <Route path = "/Profile" element={<Profile playerList={playerList} />}>
      {/* Buttons below Player Cards */}
@@ -58,7 +62,7 @@ function App() {
   </Route>
     {/*Chat screen from top right icon  */}
  <Route path = "/Chats" element={<Chats />} />
- <Route path="/CreateNewAccountPage" element={<CreateNewAccountPage />} />
+
     {/* Individual Chat screen */}
   
   </Routes>

@@ -9,7 +9,7 @@ const saltRounds = 10;
 router.get('/', async function(req, res, next) {
 
   try {
-    const result = await db (`SELECT * FROM allUsers;`)
+    const result = await db (`SELECT * FROM allusers;`)
     const users = result.data;
     res.send(users);
   } catch (err) {
@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
 router.get("/:userid", async function(req, res, next) {
   const { userid } = req.params;
   try {
-    const result = await db(`SELECT * FROM allUsers WHERE userid = ${ userid };`);
+    const result = await db(`SELECT * FROM allusers WHERE userid = ${ userid };`);
     console.log(result);
     res.send(result);
     }
@@ -36,7 +36,7 @@ router.get("/rank/:currentRank", async function(req, res, next) {
   const { currentRank } = req.params;
   console.log(`'the currentRank is:'${currentRank}`);
   try {
-    const result = await db(`SELECT * FROM allUsers WHERE currentRank = '${ currentRank }';`);
+    const result = await db(`SELECT * FROM allusers WHERE currentRank = '${ currentRank }';`);
     if (!currentRank) {
       res.status(404).send({message: `"User with ${currentRank} not found"`, error: true});
     } res.send(result);
@@ -49,8 +49,22 @@ router.get("/rank/:currentRank", async function(req, res, next) {
 router.get("/region/:serverRegion", async function(req, res, next) {
   const { serverRegion } = req.params;
   try {
-    const result = await db(`SELECT * FROM allUsers WHERE serverRegion = '${ serverRegion }';`);
+    const result = await db(`SELECT * FROM allusers WHERE serverRegion = '${ serverRegion }';`);
     if (!serverRegion) {
+      res.status(404).send({message: "User not found", error: true});
+    } res.send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+//GET user by email
+//Postman should have: localhost:4000/api/users/email/<EMAIL>
+router.get("/email/:email", async function(req, res, next) {
+  const { email } = req.params;
+  try {
+    const result = await db(` SELECT * FROM allusers WHERE email ='${email}';`);
+    if (!email) {
       res.status(404).send({message: "User not found", error: true});
     } res.send(result);
   } catch (err) {
