@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { IconButton } from '@material-ui/core';
 import "./CreateNewAccountPage.css";
@@ -27,20 +27,50 @@ const [newPlayer, setNewPlayer] = useState({
       // getUser();
     }, []);
   
-    const getUser = () => {
-      fetch("/api/users")
-        .then((response) => response.json())
-        .then((user) => {
-          setUser(user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    // const getUser = () => {
+    //   fetch("/api/users")
+    //     .then((response) => response.json())
+    //     .then((user) => {
+    //       setUser(user);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
+    //I want a way to check if the email is already in the database
+    //if it does exist, I want the user to be alerted of that and ask them to login instead.
+    //if it doesn't exist, I want the user input to go on to the addPlayer function to add the new player to the database.
+    async function checkExistingEmail(email) {
+      
+      try {
+          const response = await fetch(`/api/users/email/${email}`);
+          if (response.ok) {
+              const data = await response.json();
+              return data.length === 0; // return true if email does not exist in the database
+          } else {
+              console.error("Failed to check existing email");
+              return false;
+          }
+      } catch (error) {
+          console.error("Error checking existing email:", error);
+          return false;
+      }
+  }
 
    // function to add new player
     async function addPlayer() {
+      if (!username) {
+        alert("Please create an account first");} else {
         try {
+
+          //check if the email is already in the database
+          // const emailDoesNotExist = await checkExistingEmail(newPlayer.email);
+          // if (!emailDoesNotExist) {
+          //   alert("That email is already in the database. Please login instead.");
+          //   navigate("./");
+          //   return;
+          // }
+            //if the email is not in the database, I want to add the new player to the database
             const response = await fetch("/api/users", {
                 method: "POST",
                 headers: {
@@ -48,6 +78,7 @@ const [newPlayer, setNewPlayer] = useState({
                 },
                 body: JSON.stringify(newPlayer)
             });
+            console.log("this is my response from addplayer!",response);
             if (response.ok) {
                 const data = await response.json();
                 console.log("Player added successfully:", data);
@@ -59,6 +90,7 @@ const [newPlayer, setNewPlayer] = useState({
         } catch (error) {
             console.error("Error adding player:", error);
         }
+      }
     }
 
     const handleChange = (e) => {
@@ -68,9 +100,14 @@ const [newPlayer, setNewPlayer] = useState({
             [name]: value
         }));
     }
+    //handleSumbit for adding the player input into the addPlayer function
     const handleSubmit = async (e) => {
       e.preventDefault();
       addPlayer();
+      console.log("This is what I'm sending to the addPlayer function:", newPlayer);
+    }
+    const handleNavigateToLogin = () => { 
+      navigate("./");
     }
 
 
@@ -114,7 +151,7 @@ const [newPlayer, setNewPlayer] = useState({
         <>
           <div>
                 
-                <h2>Add Player</h2>
+                <h5>Please add your information below to get started.</h5>
                 <form onSubmit={handleSubmit}>
                   <div className = "input-fields">
                     <input type="text" className="username" placeholder="Username" onChange={handleChange} />
@@ -125,12 +162,19 @@ const [newPlayer, setNewPlayer] = useState({
                     <input type="text" className="currentRank" placeholder="your current rank" onChange={handleChange} />
                     <input type="text" className="avatarURL" placeholder="avatar URL" onChange={handleChange} />
                    </div>
+              <Link to="/"
+             className="link-to-login">oops, I have an account, please take me back</Link>
+
+            <div className ="new-acct-submit-iconbutton">
+                    <p>please click the icon to create new account</p>
              <IconButton>
+              
               <PersonAddIcon type="submit" fontSize="large" className = "profile-icon" />
-             
-             </IconButton> 
-             <p>please click the icon to create new account</p>
-                </form>
+             </IconButton>
+              </div>
+                </form> 
+               
+               
             </div> 
             
         {/* <div className='form'>

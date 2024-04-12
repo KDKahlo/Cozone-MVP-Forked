@@ -33,20 +33,29 @@ try {
     `SELECT * FROM allusers WHERE username = "${username}"`); 
     // res.send(results);
   const user = results.data[0];
+  console.log("THIS is my user",user);
   //if I can find the user, check if the password is correct
   if (user) {
     //store the user id in a variable
     const user_id = user.userid;
-
+    
     const correctPassword = await bcrypt.compare(password, user.password);
     //if the password is not correct, throw an error
+    console.log("THIS is my correctPassword",correctPassword, password, user.password);
+    
     if (!correctPassword) {
       throw new Error("Incorrect password");
     } 
     //if the password is correct, create a token jwt.sign(user_id, supersecret)
     const token = jwt.sign({ user_id }, supersecret);
     //send the token back to the client 
-    res.send({ message: "Login successful, here is your token", token });
+    res.send({ message: "Login successful, here is your token", token, 
+    user: {
+      username: user.username,
+      useravatar: user.avatarURL,
+      usercurrentrank: user.currentRank,
+    } });
+    console.log("This is my Logged In USER INFO",res.send)
     //else - I don't have a user with that username
   } 
 

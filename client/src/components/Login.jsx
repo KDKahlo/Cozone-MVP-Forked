@@ -10,13 +10,14 @@ function Login() {
     password: "",
   });
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState("");
   const navigate = useNavigate();
 
   const { username, password } = credentials;
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
+   
     setCredentials({ ...credentials, [name]: value });
   };
 
@@ -25,9 +26,9 @@ function Login() {
     if (!username) {
       alert("Please create an account first");
       navigate("/CreateNewAccountPage");
-    }  else {
-
-   }
+    }  else if (username === "" || password === "") {
+      alert("Please fill in all fields");
+    } else {
     //if it doesn't exist, I want the user to be prompted to register
     //if it does exist, I want to continue with the rest of the code below.
     try {
@@ -37,13 +38,25 @@ function Login() {
         data: credentials,
       });
        //receive the token and store it in local storage
-       console.log(data);
-      localStorage.setItem("token", data.token);
-     //do the navigate here to the profile page
+      //  console.log(data);
+      localStorage.setItem("token", data.token, data.user);
+     const userData = data.user;
+     
+      console.log("THIS IS MY USER DATA", userData.username);
+     // navigate from here to the profile page
+     setData(userData);
      navigate("./Profile");
     } catch (err) {
-      console.log(err);
-    } 
+      let errorMessage = "An error occurred. Please try again."; // Default error message
+  if (err.code === "INVALID_PASSWORD") {
+    errorMessage = "Incorrect password. Please try again.";
+  } else if (err.code === "USER_NOT_FOUND") {
+    errorMessage = "Username not found. Please create an account.";
+  }
+  // Display the error message on the screen
+  alert(errorMessage); // Using alert for simplicity, you can use other UI methods
+    }
+    }
   };
 
   const logout = () => {
@@ -106,7 +119,7 @@ function Login() {
         <div className = "new-user-link">
         {/* need to handle adding new user link to CreateNewAccountpage */}
     <p>
-        Don't have a Login and Password? 
+        Don't have a Login and Password? <br></br>
         <Link to="./CreateNewAccountPage" onClick={handleNavigateToCreateNewAccountPage} className="link-to-add-new-acct">Click to create new account</Link> 
     </p>
         </div>
@@ -122,6 +135,10 @@ function Login() {
           <div className="alert">{data.username}</div>
         </div>
       )}
+   <div>
+  
+      {data && <Profile data={data} />} {/* Pass data as a prop to Profile component */}
+    </div>
     </div>
     
   );

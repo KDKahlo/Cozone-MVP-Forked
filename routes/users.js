@@ -75,8 +75,9 @@ router.get("/email/:email", async function(req, res, next) {
 /* POST a new user */
 
 router.post("/", async function(req, res, next) {
-  const hash = await bcrypt.hash(password, saltRounds);
+ 
   const { username, birthdate, email, password, serverRegion, currentRank, avatarURL } = req.body
+   const hash = await bcrypt.hash(password, saltRounds);
   console.log(`This is my req.body ${ username, birthdate, email, hash, serverRegion, currentRank, avatarURL }`)
   if (!req.body) {
     res.status(400).send({
@@ -89,9 +90,6 @@ router.post("/", async function(req, res, next) {
     await db (
       `INSERT INTO allusers (username, birthdate, email, password, serverRegion, currentRank, avatarURL) 
       VALUES ('${username}','${birthdate}','${email}','${hash}','${serverRegion}','${currentRank}','${avatarURL}');`
-     
-
-
       );
     const result = await db("SELECT * FROM allUsers;");
     res.send(result.data);

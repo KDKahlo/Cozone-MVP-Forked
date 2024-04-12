@@ -1,7 +1,6 @@
 import "./App.css";
 import { Route, Routes, useLocation} from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
 import Profile from "./components/Profile"; 
 import Chats from "./components/Chats";  
 import SwipeButtons from "./components/SwipeButtons";
@@ -46,7 +45,7 @@ function App() {
     <>
  
     {/* Header component */}
-     <Navbar />
+    
   
 
   

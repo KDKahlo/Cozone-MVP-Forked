@@ -1,30 +1,26 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import "./Profile.css"
 import TinderCard from 'react-tinder-card';
 import SwipeButtons from './SwipeButtons';
+import Navbar from "./Navbar";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { IconButton } from '@material-ui/core';
 
-function Profile({ playerList }) {
-
-
-    // const [newPlayer, setNewPlayer] = useState({
-    //     username: "",
-    //     birthdate: "",
-    //     email: "",
-    //     password: "",
-    //     serverRegion: "",
-    //     currentRank: "",
-    //     avatarURL: ""
-    // });
+function Profile({ playerList, data }) {
+  
+console.log('this is my data:', data);
 
     const [rankFilter, setRankFilter] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState([]);
     const [likedCards, setLikedCards] = useState([]);
     const tinderCardRef = useRef();
-   
+    
+
+    useEffect(() => {
      
+    }, [data]);
+
 
 //function that handles the change in the rank filter
     const handleSubmit = async (e) => {
@@ -50,35 +46,6 @@ const onSwipe = (direction, player) => {
   };
   
 
-//function to add new player
-    // async function addPlayer() {
-    //     try {
-    //         const response = await fetch("/api/users", {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             },
-    //             body: JSON.stringify(newPlayer)
-    //         });
-    //         if (response.ok) {
-    //             const data = await response.json();
-    //             console.log("Player added successfully:", data);
-             
-    //         } else {
-    //             console.error("Failed to add player");
-    //         }
-    //     } catch (error) {
-    //         console.error("Error adding player:", error);
-    //     }
-    // }
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setNewPlayer(prevState => ({
-    //         ...prevState,
-    //         [name]: value
-    //     }));
-    // }
 
     const restoreCard = async () => {
      
@@ -96,9 +63,12 @@ const onSwipe = (direction, player) => {
 
     return (
         <>
-           
-            <h1>Player Profiles</h1>
-           
+            <Navbar />
+           <div className="logged-in-player-profile">
+            <h1>Welcome to the Player Profiles {data.username} !</h1>
+            <img src={data.useravatar} alt="Avatar" />
+            <h5>It looks like your currentRank is {data.usercurrentrank}</h5>
+           </div>
             <div className = "" id = "label-input-button">
          <form onSubmit={handleSubmit}>       
           <label htmlFor="exampleDataList" 
