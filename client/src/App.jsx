@@ -6,7 +6,7 @@ import Profile from "./components/Profile";
 import Chats from "./components/Chats";  
 import SwipeButtons from "./components/SwipeButtons";
 import Login from "./components/Login.jsx";
-import CreateNewAccountPage from "./components/CreateNewAccountPage.jsx";
+import CreateNewAccountPage from "./components/CreateNewAccountPage";
 
 
 
@@ -35,21 +35,22 @@ function App() {
   }
   }
 
-  
+
+
+
 
   return (
     <>
  
     {/* Header component */}
      <Navbar />
-     <div className="login-fields">
-  {/* Route for Login */}
-  <Route path="/Login" element={<Login />} />
-  {/* Route for CreateNewAccountPage */}
-  <Route path="/CreateNewAccountPage" element={<CreateNewAccountPage />} />
-</div>
+   <div className="login-fields">
+      <Login path = "/" />
+  
+   </div>
    
   <Routes>
+ 
       {/* Player Cards */}
   <Route path = "/Profile" element={<Profile playerList={playerList} />}>
      {/* Buttons below Player Cards */}
@@ -57,6 +58,7 @@ function App() {
   </Route>
     {/*Chat screen from top right icon  */}
  <Route path = "/Chats" element={<Chats />} />
+ <Route path="/CreateNewAccountPage" element={<CreateNewAccountPage />} />
     {/* Individual Chat screen */}
   
   </Routes>
