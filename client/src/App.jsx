@@ -6,34 +6,20 @@ import Profile from "./components/Profile";
 import Chats from "./components/Chats";  
 import SwipeButtons from "./components/SwipeButtons";
 import Login from "./components/Login.jsx";
-import axios from "axios";
+import CreateNewAccountPage from "./components/CreateNewAccountPage.jsx";
+
+
 
 function App() {
  
   const [playerList, setPlayerList] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  
 
   useEffect(() => {
-    const checkLoggedInStatus = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        try {
-          await axios.get("/api/auth/profile", {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          });
-          setIsLoggedIn(true);
-          await getPlayers();
-        } catch (err) {
-          console.error(err);
-          setIsLoggedIn(false);
-        }
-      }
-    };
-
-    checkLoggedInStatus();
+          getPlayers();
   }, []);
+
 
   async function getPlayers() {
     try {
@@ -49,24 +35,20 @@ function App() {
   }
   }
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    getPlayers();
-  };
+  
 
   return (
     <>
  
     {/* Header component */}
-    <Navbar />
-   <div className="login-fields">
-     {!isLoggedIn ? (
-          <Login onLogin={handleLogin} />
-          ) : (
-          <Navigate to="/profile" />
-          )}
-   </div>
-
+     <Navbar />
+     <div className="login-fields">
+  {/* Route for Login */}
+  <Route path="/Login" element={<Login />} />
+  {/* Route for CreateNewAccountPage */}
+  <Route path="/CreateNewAccountPage" element={<CreateNewAccountPage />} />
+</div>
+   
   <Routes>
       {/* Player Cards */}
   <Route path = "/Profile" element={<Profile playerList={playerList} />}>

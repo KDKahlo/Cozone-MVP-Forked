@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
+var bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 // /* GET all users */
 //localhost:4000/api/users/
@@ -59,8 +61,9 @@ router.get("/region/:serverRegion", async function(req, res, next) {
 /* POST a new user */
 
 router.post("/", async function(req, res, next) {
+  const hash = await bcrypt.hash(password, saltRounds);
   const { username, birthdate, email, password, serverRegion, currentRank, avatarURL } = req.body
-  console.log(`This is my req.body ${ username, birthdate, email, password, serverRegion, currentRank, avatarURL }`)
+  console.log(`This is my req.body ${ username, birthdate, email, hash, serverRegion, currentRank, avatarURL }`)
   if (!req.body) {
     res.status(400).send({
       message: "Please complete the form",
@@ -71,7 +74,7 @@ router.post("/", async function(req, res, next) {
   try {
     await db (
       `INSERT INTO allusers (username, birthdate, email, password, serverRegion, currentRank, avatarURL) 
-      VALUES ('${username}','${birthdate}','${email}','${password}','${serverRegion}','${currentRank}','${avatarURL}');`
+      VALUES ('${username}','${birthdate}','${email}','${hash}','${serverRegion}','${currentRank}','${avatarURL}');`
      
 
 

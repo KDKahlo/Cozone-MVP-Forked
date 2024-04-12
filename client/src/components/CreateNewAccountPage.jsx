@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const USER_INITIAL_STATE = {
     username: "",
@@ -38,6 +40,10 @@ export default function Form() {
     const addUser = async () => {
         //POST a new user using fetch to send the request to server
         //requirements: POST method, /api/users, body with values in json format
+        //Once the request is completed, it should navigate the user to the profile page
+       //before creating the user in the database we need to make sure all the required fields 
+       //were completed, it they were not, the user should be alerted to fill in the missing fields.
+       
         try {
           const results = await fetch("/api/users", {
             method: "POST",
@@ -47,8 +53,10 @@ export default function Form() {
             body: JSON.stringify(newUser),
           });
           const data = await results.json();
-          setUser(data);
-          setNewUser(USER_INITIAL_STATE);
+          // setUser(data);
+          // setNewUser(USER_INITIAL_STATE);
+           console.log("Player added successfully:", data);
+           Navigate("/Profile");
         } catch (error) {
           console.log(error);
         }
@@ -59,17 +67,36 @@ export default function Form() {
         addUser();
     }
 
+
     return (
         <>
-        <div className='form'>
+          {/* <div>
+                
+                <h2>Add Player</h2>
+                <form onSubmit={addPlayer}>
+                    <input type="text" name="username" placeholder="Username" onChange={handleChange} />
+                    <input type="text" name="birthdate" placeholder="DOB format: 1999-04-25" onChange={handleChange} />
+                    <input type="text" name="email" placeholder="your email address" onChange={handleChange} />
+                    <input type="text" name="password" placeholder="password" onChange={handleChange} />
+                    <input type="text" name="serverRegion" placeholder="your server region" onChange={handleChange} />
+                    <input type="text" name="currentRank" placeholder="your current rank" onChange={handleChange} />
+                    <input type="text" name="avatarURL" placeholder="avatar URL" onChange={handleChange} />
+                   
+             <IconButton>
+              <PersonAddIcon type="submit" fontSize="large" className = "profile-icon" />
+             </IconButton>
+                </form>
+            </div> */} 
+            
+        {/* <div className='form'>
             <form onSubmit={handleSubmit}>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" onChange={handleInputChange}/>
+                    <label for="exampleInputEmail1" class="form-label"></label>
+                    <input type="text" class="form-control" id="username" placeholder="Username" onChange={handleInputChange}/>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" onChange={handleInputChange}/>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="your email address" onChange={handleInputChange}/>
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
@@ -103,7 +130,7 @@ export default function Form() {
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-        </div>
+        </div> */}
         </>
 
 )}

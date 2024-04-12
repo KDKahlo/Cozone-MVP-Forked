@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from "react-router-dom"
-import Navbar from './Navbar';
 import "./Profile.css"
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import TinderCard from 'react-tinder-card';
 import SwipeButtons from './SwipeButtons';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -11,15 +9,15 @@ import { IconButton } from '@material-ui/core';
 function Profile({ playerList }) {
 
 
-    const [newPlayer, setNewPlayer] = useState({
-        username: "",
-        birthdate: "",
-        email: "",
-        password: "",
-        serverRegion: "",
-        currentRank: "",
-        avatarURL: ""
-    });
+    // const [newPlayer, setNewPlayer] = useState({
+    //     username: "",
+    //     birthdate: "",
+    //     email: "",
+    //     password: "",
+    //     serverRegion: "",
+    //     currentRank: "",
+    //     avatarURL: ""
+    // });
 
     const [rankFilter, setRankFilter] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState([]);
@@ -51,7 +49,6 @@ const onSwipe = (direction, player) => {
     }
   };
   
-  
 
 //function to add new player
     // async function addPlayer() {
@@ -75,26 +72,26 @@ const onSwipe = (direction, player) => {
     //     }
     // }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setNewPlayer(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setNewPlayer(prevState => ({
+    //         ...prevState,
+    //         [name]: value
+    //     }));
+    // }
 
     const restoreCard = async () => {
      
         await tinderCardRef.current.restoreCard();
       };
 
-      // const handleLeftSwipe = (player) => {
-      //   onSwipe('left', player);
-      // };
+      const handleLeftSwipe = (player) => {
+        onSwipe('left', player);
+      };
     
-      // const handleRightSwipe = (player) => {
-      //   onSwipe('right', player);
-      // };
+      const handleRightSwipe = (player) => {
+        onSwipe('right', player);
+      };
 
 
     return (
@@ -162,6 +159,10 @@ const onSwipe = (direction, player) => {
           ))
         )}
          <SwipeButtons restoreCard={restoreCard}  />
+         <div>
+        <button onClick={() => handleLeftSwipe(player)}>Left Swipe</button>
+        <button onClick={() => handleRightSwipe(player)}>Right Swipe</button>
+        </div>
          {/* add to code later when debugged for button clicking left and right to swipe cards
           handleLeftSwipe={handleLeftSwipe} handleRightSwipe={handleRightSwipe} */}
       </div>
@@ -183,23 +184,7 @@ const onSwipe = (direction, player) => {
       </div>
 
 
-            {/* <div>
-                
-                <h2>Add Player</h2>
-                <form onSubmit={addPlayer}>
-                    <input type="text" name="username" placeholder="Username" onChange={handleChange} />
-                    <input type="text" name="birthdate" placeholder="DOB format: 1999-04-25" onChange={handleChange} />
-                    <input type="text" name="email" placeholder="your email address" onChange={handleChange} />
-                    <input type="text" name="password" placeholder="password" onChange={handleChange} />
-                    <input type="text" name="serverRegion" placeholder="your server region" onChange={handleChange} />
-                    <input type="text" name="currentRank" placeholder="your current rank" onChange={handleChange} />
-                    <input type="text" name="avatarURL" placeholder="avatar URL" onChange={handleChange} />
-                   
-             <IconButton>
-              <PersonAddIcon type="submit" fontSize="large" className = "profile-icon" />
-             </IconButton>
-                </form>
-            </div> */}
+          
         </>
     );
 }

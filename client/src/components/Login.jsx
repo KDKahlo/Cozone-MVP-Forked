@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./CreateNewAccountPage";
 
-function Login({onLogin}) {
+function Login() {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
 
   const [data, setData] = useState(null);
+  const navigate = useNavigate();
 
   const { username, password } = credentials;
 
@@ -17,6 +20,15 @@ function Login({onLogin}) {
   };
 
   const login = async () => {
+    //I want to see first if the username exists in the database
+    if (!username) {
+      alert("Please create an account first");
+      navigate("/CreateNewAccountPage");
+    }  else {
+
+   }
+    //if it doesn't exist, I want the user to be prompted to register
+    //if it does exist, I want to continue with the rest of the code below.
     try {
       //send the request to the login
       const { data } = await axios("/api/auth/login", {
@@ -26,11 +38,11 @@ function Login({onLogin}) {
        //receive the token and store it in local storage
        console.log(data);
       localStorage.setItem("token", data.token);
-     
-
+     //do the navigate here to the profile page
+     navigate("./Profile");
     } catch (err) {
       console.log(err);
-    }
+    } 
   };
 
   const logout = () => {
@@ -39,23 +51,26 @@ function Login({onLogin}) {
     setData(null)
   };
 
-  const requestData = async () => {
-    //get the token from local storage
-    const token = localStorage.getItem("token");
-    try {
-      const { data } = await axios.get("/api/auth/profile", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(data);
-      setData(data);
-    }catch (err) { 
-      console.log(err);
-      setData(null);
-    }
+  // const requestData = async () => {
+  //   //get the token from local storage
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     const { data } = await axios.get("/api/auth/profile", {
+  //       headers: {
+  //         authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     console.log(data);
+  //     setData(data);
+  //   }catch (err) { 
+  //     console.log(err);
+  //     setData(null);
+  //   }
+  // };
 
-  };
+  const handleNavigateToCreateNewAccountPage = () => {
+    navigate("/CreateNewAccountPage");
+  }
 
   return (
     <div>
@@ -82,6 +97,13 @@ function Login({onLogin}) {
             Log out
           </button>
         </div>
+        {/* need to handle adding new user link to CreateNewAccountpage */}
+    <p>
+        Don't have a Login and Password? 
+        <span onClick={handleNavigateToCreateNewAccountPage} 
+          style={{ cursor: 'pointer', textDecoration: 'underline' }}>Click to create new account</span>
+    </p>
+
       </div>
       {/* <div className="text-center p-4">
         <button className=" btn btn-outline-primary" onClick={requestData}>

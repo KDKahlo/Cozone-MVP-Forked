@@ -4,25 +4,25 @@ var jwt = require("jsonwebtoken");
 var db = require("../model/helper");
 require("dotenv").config();
 var bcrypt = require("bcrypt");
-const saltRounds = 10;
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 const supersecret = process.env.SUPER_SECRET;
 
-router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+//This code now exist in new user 
+// router.post("/register", async (req, res) => {
+//   const { username, password } = req.body;
 
-  try {
-    const hash = await bcrypt.hash(password, saltRounds);
+//   try {
+//     const hash = await bcrypt.hash(password, saltRounds);
 
-    await db(
-      `INSERT INTO users (username, password) VALUES ("${username}", "${hash}")`
-    );
+//     await db(
+//       `INSERT INTO users (username, password) VALUES ("${username}", "${hash}")`
+//     );
 
-    res.send({ message: "Register successful" });
-  } catch (err) {
-    res.status(400).send({ message: err.message });
-  }
-});
+//     res.send({ message: "Register successful" });
+//   } catch (err) {
+//     res.status(400).send({ message: err.message });
+//   }
+// });
 
 router.post("/login", async (req, res) => {
 const { username, password } = req.body;
@@ -30,13 +30,13 @@ const { username, password } = req.body;
 try {
 //check if user exists so we can compare the password
   const results = await db(
-    `SELECT * FROM users WHERE username = "${username}"`); 
+    `SELECT * FROM allusers WHERE username = "${username}"`); 
     // res.send(results);
   const user = results.data[0];
   //if I can find the user, check if the password is correct
   if (user) {
     //store the user id in a variable
-    const user_id = user.id;
+    const user_id = user.userid;
 
     const correctPassword = await bcrypt.compare(password, user.password);
     //if the password is not correct, throw an error
@@ -59,9 +59,9 @@ try {
 
 router.get("/profile", userShouldBeLoggedIn, async (req, res) => {
   try {
-const results = await db(`SELECT * FROM users WHERE id = ${req.user_id}`);
+const results = await db(`SELECT * FROM allusers WHERE userid = ${req.user_id}`);
 res.send(results.data[0]);
-  } catch {
+  } catch (err) {
     res.status(400).send({ message: err.message });
   }
 
