@@ -53,7 +53,7 @@ function App() {
    
   <Routes>
   <Route path="/" element={<Login />} />
-  <Route path="/CreateNewAccountPage" element={<CreateNewAccountPage />} />
+  <Route path="/CreateNewAccountPage" element={<CreateNewAccountPage playerList={playerList}/>} />
       {/* Player Cards */}
   <Route path = "/Profile" element={<Profile playerList={playerList} />}>
      {/* Buttons below Player Cards */}
