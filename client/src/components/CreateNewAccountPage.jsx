@@ -7,7 +7,7 @@ import "./CreateNewAccountPage.css";
 
 
 
-export default function CreateNewAccountPage() {
+export default function CreateNewAccountPage(playerList) {
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
 
